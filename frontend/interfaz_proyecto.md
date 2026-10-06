@@ -1,0 +1,1 @@
+Interfaz amigable para MediaCareAI
