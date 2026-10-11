@@ -1,10 +1,9 @@
 from fastapi import FastAPI
+from routers import medicos as router_medicos
 
-app = FastAPI(
-    Title="MediaCare AI"
-)
+app = FastAPI(title="MediaCare AI")
 
-@app.get("/")
-def hola():
-    return {"Hola": "mundo"}
-    
+app.include_router(router_medicos)
+
+
+
