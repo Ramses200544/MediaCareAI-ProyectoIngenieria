@@ -1,7 +1,10 @@
-from fastapi import FastAPI 
+from fastapi import FastAPI
 
-app = FastAPI()
+app = FastAPI(
+    Title="MediaCare AI"
+)
 
 @app.get("/")
-def funcion_prueba():
-    return {"Hola": "Asistente de MediaCare AI Funcionando"}
+def hola():
+    return {"Hola": "mundo"}
+    
