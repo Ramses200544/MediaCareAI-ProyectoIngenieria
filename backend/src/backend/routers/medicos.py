@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from backend.shemas import DatosMedico
+from backend.shemas.datos_medicos import DatosMedico
 
 router = APIRouter(prefix="/Usuarios", tags=["Medicos"])
 
