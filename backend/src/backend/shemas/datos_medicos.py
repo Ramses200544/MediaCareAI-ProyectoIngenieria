@@ -1,6 +1,11 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, Field
 
-class DatosMedico(BaseModel):
-    correo: EmailStr
-    password: src = Field(min_length=8)
-    
+class RegisterMedico(BaseModel): #Lo que se envía desde el Frontend
+    name: str = Field(min_length=10, max_length=100)
+    email: EmailStr
+    password: str = Field(min_length=8, max_length=20)
+
+class ResponseMedico(BaseModel): #Lo que el backend responde
+    id: int
+    name: str = Field(min_length=10, max_length=100)
+    email: EmailStr

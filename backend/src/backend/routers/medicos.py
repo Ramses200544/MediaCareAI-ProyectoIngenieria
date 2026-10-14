@@ -1,8 +1,9 @@
-from fastapi import APIRouter, HTTPException
-from backend.shemas.datos_medicos import DatosMedico
+from fastapi import APIRouter, HTTPException, status
+from backend.shemas.datos_medicos import RegisterMedico, ResponseMedico
+from backend.services import evaluacion_medicos
 
-router = APIRouter(prefix="/Usuarios", tags=["Medicos"])
 
-@router.post("/medicos", status_code=201)
-def recibir_datos(medico: DatosMedico):
-    return {"mensaje": "registro exitoso"}
+
+
+
+

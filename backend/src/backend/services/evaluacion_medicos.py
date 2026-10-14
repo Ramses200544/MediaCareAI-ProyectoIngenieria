@@ -1,3 +1,4 @@
+from backend.routers import medicos
 import string, bcrypt
 
 def validar_password(password: str) -> bool:
@@ -16,7 +17,8 @@ def encriptar_password(password:str) -> str:
 
 def registrar_medico(medico):
     if not validar_password(password.medico):
-        raise ContrasenaInvalidaError()
+        raise PasswordInvalidoError()
     
 
+    
     
