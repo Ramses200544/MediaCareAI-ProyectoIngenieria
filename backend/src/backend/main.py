@@ -1,9 +1,10 @@
 from fastapi import FastAPI
-from backend.routers.medicos import router as router_medicos
+from src.backend.routers import medico_router
 
 app = FastAPI(title="MediaCareAI")
 
-app.include_router(router_medicos, prefix="/usuarios", tags=["medicos"])
+app.include_router(medico_router.router)
+
 
 
 
