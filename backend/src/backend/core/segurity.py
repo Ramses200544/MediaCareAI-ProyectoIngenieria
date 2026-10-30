@@ -1,17 +1,13 @@
-import bcrypt
+from passlib.context import CryptContext
 
-def hash_password(password:str) -> str:
-    hashed = bcrypt.hashpw(password.encode("UTF-8"), bcrypt.gensalt())
-    return hashed.decode()
+pwt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-def verify_password(password:str, hashed_password:str) -> bool:
-    return bcrypt.checkpw(
-        password.encode("UTF-8"),
-        hashed_password("UTF-8"),
-    )
 
-prueba = hash_password("HolaXD453@4")
-print(prueba)
+def get_password(password:str) -> str:
+    return pwt_context.hash(password)
 
-prueba_1 = verify_password()
+def verify_password(plain_password:str, hashed_password:str) -> bool:
+    return pwt_context.verify(plain_password, hashed_password)
+
+
 

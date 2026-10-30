@@ -1,24 +1,21 @@
-from fastapi import APIRouter, HTTPException, status
-from backend.medicos.shemas import RegisterMedico, ResponseMedico
+from fastapi import APIRouter, HTTPException, Depends, status
+from sqlalchemy.orm import Session
+from backend.medicos.schemas.medico_shema import MedicCreate, MedicResponse
+from backend.medicos.services.medico_service import MedicService
+from backend.core.database import get_db
 
-router = APIRouter(prefix="/usuarios", tags=["medicos"])
+router = APIRouter(prefix="/medics", tags=["medicos"])
 
-simulation_db = [{"id": 1, "full_name": "Ramses", "email":"ramses44@gmail.com"}, 
-{"id": 2, "full_name": "Alondra", "email":"anitaalo12@gmail.com"}]
+@router.post("/register", response_model = MedicResponse, status_code=status.HTTP_201_CREATED)
 
-@router.get("")
-def filter_list():
-    return simulation_db
+def register_new_medic(medic: MedicCreate, db: Session = Depends(get_db)):
+    """Registrar a un nuevo medico dentro de la plataforma"""
 
-@router.get("/{user_id}") # GET USER/2
-def search_user(user_id:int):
-    for user in simulation_db:
-        if user["id"] == user_id:
-            return user
-    raise HTTPException(status_code=404, details="user no search")
+    new_medic = MedicService.register_medic(db=db, medic=medic)
+    return new_medic
+    
 
-@router.post("", status_code=201)
-def create_user(data: Dict):
-    new_user = {"id": len(simulation_db) + 1, **data}
-    simulation_db.append(new_user)
-    return new_user 
+    
+        
+
+

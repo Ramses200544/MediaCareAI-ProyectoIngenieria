@@ -1,9 +1,26 @@
 from fastapi import FastAPI
-from backend.medicos.routers import medico_router as router_medicos
+from src.backend.medicos.routers.medico_router import router as router_medico
 
-app = FastAPI(title="MediaCareAI")
 
-app.include_router(router_medicos.router)
+
+
+app = FastAPI(title="MediaCare AI", 
+description= "Sistema de Backend para MediaCare AI",
+version="1.0.0")
+
+app.include_router(router_medico)
+
+@app.get("/")
+def welcome():
+    return {"message": ("Bienvenido a la primera versión de MediaCare AI")}
+
+
+
+
+
+
+
+
 
 
 

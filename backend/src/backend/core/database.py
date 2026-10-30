@@ -1,13 +1,14 @@
+import os
 from sqlalchemy import create_engine
-from sqlalchemy.org import DeclarativeBase, sessionmaker
+from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import sessionmaker
 from backend.core.configure import settings
 
-engine = create_engine(settings.database_url, connect_args= {"check_same_theread": False})
+engine = create_engine(settings.DATABASE_URL)
 
-SessionLocal = sessionmaker(bind=engine, autoflush=False)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-class Base(DeclarativeBase):
-    pass
+Base = declarative_base()
 
 def get_db():
     db = SessionLocal()
@@ -16,4 +17,9 @@ def get_db():
     finally:
         db.close()
 
+#Comprobar que exista la DB
+print("Existe la BD:", bool(settings.DATABASE_URL))
 
+#Comprobar si utiliza PostgresSQL
+print("¿Utiliza PostgreSQL?:", settings.DATABASE_URL.startswith("postgresql"))
+        
