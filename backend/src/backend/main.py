@@ -1,9 +1,6 @@
 from fastapi import FastAPI
 from src.backend.medicos.routers.medico_router import router as router_medico
 
-
-
-
 app = FastAPI(title="MediaCare AI", 
 description= "Sistema de Backend para MediaCare AI",
 version="1.0.0")

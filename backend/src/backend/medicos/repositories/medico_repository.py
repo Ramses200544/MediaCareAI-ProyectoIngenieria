@@ -26,6 +26,8 @@ class MedicRepository:
         db.refresh(db_medic) #Actualiza la BD para visualizar 
         return db_medic
 
+    
+
 
 
 
