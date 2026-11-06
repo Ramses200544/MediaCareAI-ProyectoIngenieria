@@ -1,11 +1,11 @@
 from sqlalchemy.orm import Session
-from backend.pacientes.models import PatientModel
+from backend.pacientes.models.models_pacientes import PatientModel
 from backend.pacientes.schemas.pacientes_schemas import CreatePatient
 
 class PatientRepository:
 
     @staticmethod
-    def create_patient(db: Session, patient: CreatePatient) -> PatientModel:
+    def create_patient(db: Session, patient: CreatePatient, medic_id: int) -> PatientModel:
         new_patient = PatientModel(
 
             medic_id=medic_id, #Foreign Key
