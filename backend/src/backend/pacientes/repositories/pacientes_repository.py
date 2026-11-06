@@ -31,7 +31,7 @@ class PatientRepository:
         return db.query(PatientModel).filter(PatientModel.medic_id == medic_id).order_by(PatientModel.full_name).all()
 
     @staticmethod
-    def get_patients(db: Session, medic_id: int, patient_id: int) -> PatientModel | None:
+    def get_patients_by_id(db: Session, medic_id: int, patient_id: int) -> PatientModel | None:
         return db.query(PatientModel).filter(PatientModel.id == patient_id, PatientModel.medic_id== medic_id).first()
 
 
