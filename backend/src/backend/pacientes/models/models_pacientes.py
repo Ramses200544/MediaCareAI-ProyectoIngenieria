@@ -1,4 +1,4 @@
-from sqlalchemy import String, Integer, Date, Text, DateTime, ForeignKey, DateTime
+from sqlalchemy import (String, Integer, Date, Text, DateTime, ForeignKey)
 from datetime import date
 from sqlalchemy.sql import func
 from sqlalchemy.orm import Mapped, mapped_column
@@ -15,5 +15,5 @@ class PatientModel(Base):
     sex: Mapped[str] = mapped_column(String(10), nullable=False)
     antecedents: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
     allergys: Mapped[Optional[str]] = mapped_column(Text, nullable=True)
-    date_register : Mapped[DateTime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    date_register : Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     
