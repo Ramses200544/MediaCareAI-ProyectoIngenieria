@@ -36,7 +36,7 @@ class MedicService:
 
 
         access_token = create_access_token(
-            data={"sub": medic.email}
+            data={"sub": str(medic.id)}
         )
 
         return {

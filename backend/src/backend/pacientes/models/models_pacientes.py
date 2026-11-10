@@ -1,5 +1,5 @@
 from sqlalchemy import (String, Integer, Date, Text, DateTime, ForeignKey)
-from datetime import date
+from datetime import date, datetime
 from sqlalchemy.sql import func
 from sqlalchemy.orm import Mapped, mapped_column
 from backend.core.database import Base

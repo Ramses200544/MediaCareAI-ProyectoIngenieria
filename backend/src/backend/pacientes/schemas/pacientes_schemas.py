@@ -17,4 +17,4 @@ class ResponsePatient(BaseModel):
     antecedents: Optional[str] = None
     allergys: Optional[str] = None
 
-model_conf = {"from_attributes":True}
+    model_config = {"from_attributes":True}
