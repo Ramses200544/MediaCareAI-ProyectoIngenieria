@@ -14,6 +14,13 @@ def get_current_medic(
     payload = decode_access_token(token)
     medic_id = payload.get("sub")
 
+if medic_id is None:
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail= "No se pudieron validar correctamente las credenciales",
+        headers={"WWW-Authenticate": "Bearer"}
+    )
+    
 
     
 
