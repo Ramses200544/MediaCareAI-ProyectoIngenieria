@@ -26,6 +26,10 @@ class MedicRepository:
         db.refresh(db_medic) #Actualiza la BD para visualizar 
         return db_medic
 
+    @staticmethod
+    def get_by_id(db: Session, medic_id: int) -> MedicModel | None:
+        return db.query(MedicModel).filter(MedicModel.id == medic_id).first()
+        
     
 
 
