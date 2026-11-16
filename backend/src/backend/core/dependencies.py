@@ -30,5 +30,27 @@ def get_current_medic(
          headers={"WWW-Authenticate": "Bearer"}
         )
 
+    try:
+        medic_id = int(medic_id)
+    except ValueError:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail = "No se pudieron validar correctamente las credenciales",
+            headers = {"WWW-Authenticate": "Bearer"}
+        )
+    
+    current_medic = MedicRepository.get_by_id(db, medic_id)
+
+    if current_medic is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail = "No se pudieron verificar correctamente las credenciales",
+            headers = {"WWW-Authenticate": "Bearer"}
+        )
+    return current_medic
+    
+
+
+
 
 
