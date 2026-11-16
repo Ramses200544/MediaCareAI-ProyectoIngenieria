@@ -20,6 +20,7 @@ def get_current_medic(
          detail= "No se pudieron validar correctamente las credenciales",
          headers={"WWW-Authenticate": "Bearer"}
     )
+    
 
 
     
