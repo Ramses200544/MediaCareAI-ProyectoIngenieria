@@ -10,7 +10,7 @@ router = APIRouter(prefix="/patients", tags=["patients"])
 
 @router.post("/register", response_model=ResponsePatient, status_code=status.HTTP_201_CREATED, response_description="Usted registro a un paciente exitosamente")
 
-def recibe_data_patient(patient: CreatePatient, db: Session = Depends(get_db), medic_id = int):
+def recibe_data_patient(patient: CreatePatient, db: Session = Depends(get_db), current_medic: MedicModel = Depends(get_current_medic)):
 
     new_patient = PatientService.verify_patient(patient = patient, db = db, medic_id = current_medic.id)
     
