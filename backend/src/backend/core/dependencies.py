@@ -32,7 +32,7 @@ def get_current_medic(
 
     try:
         medic_id = int(medic_id)
-    except ValueError:
+    except (ValueError, TypeError):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail = "No se pudieron validar correctamente las credenciales",
@@ -47,6 +47,13 @@ def get_current_medic(
             detail = "No se pudieron verificar correctamente las credenciales",
             headers = {"WWW-Authenticate": "Bearer"}
         )
+    
+    if not current_medic.is_activate:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail = "El médico se encuentra desactivado por el momento",
+        )
+
     return current_medic
     
 

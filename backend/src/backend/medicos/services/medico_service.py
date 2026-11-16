@@ -24,7 +24,7 @@ class MedicService:
         return new_medic
     
     @staticmethod
-    def authenticate_medic(db:Session, data_medic: MedicLogin) -> MedicModel:
+    def authenticate_medic(db:Session, data_medic: MedicLogin) -> dict[str, str]:
 
         medic = MedicRepository.get_by_email(db, email=data_medic.email)
 
